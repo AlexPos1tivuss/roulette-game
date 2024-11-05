@@ -11,6 +11,17 @@ export class RoomsController {
     return this.roomsService.createRoom(body.name, req.user);
   }
 
+  @Get(':name')
+  async getRoom(@Body('name') name: string) {
+    return this.roomsService.getRoomByName(name);
+  }
+
+  @Post('join')
+  async joinRoom(@Body('roomName') roomName: string, @Body('userId') userId: number) {
+    return this.roomsService.joinRoom(roomName, userId);
+  }
+
+
   @Get()
   async getAllRooms() {
     return this.roomsService.findAllRooms();

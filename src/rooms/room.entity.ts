@@ -10,5 +10,8 @@ export class Room {
   name: string;
 
   @ManyToOne(() => User, (user) => user.rooms)
-  owner: User;
+  owner: User[];
+  
+  @Column({ default: true })
+  isActive: boolean;
 }
