@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   const config = new DocumentBuilder()
-    .setTitle('Roulette Game API')
-    .setDescription('API for the roulette game')
+    .setTitle('Roulette Game')
+    .setDescription('roulette game')
     .setVersion('1.0')
     .build();
     

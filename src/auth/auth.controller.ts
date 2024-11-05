@@ -8,7 +8,7 @@ export class AuthController {
   @Post('register')
   async register(@Body() body: { username: string; password: string }) {
     const existingUser = await this.usersService.findByUsername(body.username);
-    if (existingUser) throw new BadRequestException('Username already exists');
+    if (existingUser) throw new BadRequestException('Имя пользователя уже существует');
     return this.usersService.createUser(body.username, body.password);
   }
 
@@ -16,7 +16,7 @@ export class AuthController {
   async login(@Body() body: { username: string; password: string }) {
     const user = await this.usersService.findByUsername(body.username);
     if (!user || user.password !== body.password) {
-      throw new BadRequestException('Invalid username or password');
+      throw new BadRequestException('Неверное имя пользователя или пароль');
     }
     return { message: 'Login successful', userId: user.id };
   }
