@@ -14,8 +14,8 @@ export class RoomsService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async createRoom(name: string, owner: User): Promise<Room> {
-    const room = this.roomsRepository.create({ name, owner });
+  async createRoom(name: string, owner: User, users: User[] = []): Promise<Room> {
+    const room = this.roomsRepository.create({ name, users: [owner, ...users] });
     return this.roomsRepository.save(room);
   }
 
